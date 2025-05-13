@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'users_page.dart';
 
 class AdminPage extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
@@ -38,20 +39,30 @@ class AdminPage extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             final item = items[index];
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                color: Colors.black87,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(item['icon'], color: Colors.blueAccent, size: 40),
-                    SizedBox(height: 10),
-                    Text(
-                      item['title'],
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
+            return GestureDetector(
+              onTap: () {
+                if (item['title'] == 'Estudantes') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const UsersPage()),
+                  );
+                }
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  color: Colors.black87,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(item['icon'], color: Colors.blueAccent, size: 40),
+                      SizedBox(height: 10),
+                      Text(
+                        item['title'],
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
